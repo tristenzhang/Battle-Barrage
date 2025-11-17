@@ -48,7 +48,7 @@ public class Balloon : MonoBehaviour
         GameManager gm = FindObjectOfType<GameManager>();
         if (gm != null)
         {
-            gm.AddCurrency(currencyValue);
+            // Currency awarding is ignored for now.
         }
     }
 }
