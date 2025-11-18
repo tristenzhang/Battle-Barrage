@@ -2811,9 +2811,9 @@ MonoBehaviour:
   npcPool: {fileID: 1443923864}
   friendly:
     pathParent: {fileID: 110328268}
-    spawnInterval: 1
-    maxActive: 50
+    maxActive: 20
     tagOnSpawn: 
+    materialForType: {fileID: 2100000, guid: 7926e4a76e6666a49a2738920d765da0, type: 2}
     moveSpeed: 2.5
     turnSpeed: 360
     hoverHeight: 0.5
@@ -2822,15 +2822,14 @@ MonoBehaviour:
     groundMask:
       serializedVersion: 2
       m_Bits: 4294967295
-    loopAtEnd: 0
     waypoints: []
     _spawnTimer: 0
     _activeCount: 0
   neutral:
     pathParent: {fileID: 0}
-    spawnInterval: 2
     maxActive: 6
     tagOnSpawn: 
+    materialForType: {fileID: 0}
     moveSpeed: 2.5
     turnSpeed: 360
     hoverHeight: 0.5
@@ -2839,15 +2838,14 @@ MonoBehaviour:
     groundMask:
       serializedVersion: 2
       m_Bits: 4294967295
-    loopAtEnd: 0
     waypoints: []
     _spawnTimer: 0
     _activeCount: 0
   enemy:
-    pathParent: {fileID: 0}
-    spawnInterval: 2
-    maxActive: 6
+    pathParent: {fileID: 937953856}
+    maxActive: 20
     tagOnSpawn: 
+    materialForType: {fileID: 2100000, guid: ebe4d8d840ea27148bc417380c7f2b39, type: 2}
     moveSpeed: 2.5
     turnSpeed: 360
     hoverHeight: 0.5
@@ -2856,7 +2854,6 @@ MonoBehaviour:
     groundMask:
       serializedVersion: 2
       m_Bits: 4294967295
-    loopAtEnd: 0
     waypoints: []
     _spawnTimer: 0
     _activeCount: 0
@@ -3118,6 +3115,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915977715}
   m_CullTransparentMesh: 1
+--- !u!4 &937953856 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 790995142536353734, guid: 4216c0edc1e910e419c08a186af6fba4, type: 3}
+  m_PrefabInstance: {fileID: 1377291248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &938450188
 GameObject:
   m_ObjectHideFlags: 0
@@ -4768,6 +4770,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2179313022273636944, guid: 4216c0edc1e910e419c08a186af6fba4, type: 3}
+      propertyPath: m_Name
+      value: RedPathPoints
+      objectReference: {fileID: 0}
     - target: {fileID: 2600506595547091482, guid: 4216c0edc1e910e419c08a186af6fba4, type: 3}
       propertyPath: m_Name
       value: Routes
@@ -4815,6 +4821,10 @@ PrefabInstance:
     - target: {fileID: 2617236892820071141, guid: 4216c0edc1e910e419c08a186af6fba4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406611544693237264, guid: 4216c0edc1e910e419c08a186af6fba4, type: 3}
+      propertyPath: m_Name
+      value: BluePathPoints
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

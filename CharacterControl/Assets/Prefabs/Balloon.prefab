@@ -127,6 +127,8 @@ MonoBehaviour:
   currencyValue: 10
   popEffect: {fileID: 0}
   popSound: {fileID: 8300000, guid: 2c3a4538e8969134dadf5f46fd3cb83a, type: 3}
+  volume: 1
+  sfxOrigin: {fileID: 0}
 --- !u!135 &6484177761864456737
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -18,6 +18,10 @@ public class NPCSpawnAndMove : MonoBehaviour
         public int maxActive = 6;
         public string tagOnSpawn = "";
 
+        [Header("Appearance")]
+        [Tooltip("If set, all spawned instances for this type will use this Material.")]
+        public Material materialForType;
+
         [Header("Movement")]
         public float moveSpeed = 2.5f;
         public float turnSpeed = 360f;
@@ -33,8 +37,6 @@ public class NPCSpawnAndMove : MonoBehaviour
 
         [Tooltip("Layers considered as the path ground (EXCLUDE the NPC layer!).")]
         public LayerMask groundMask = ~0;
-
-        public bool loopAtEnd = false;
 
         [HideInInspector] public List<Vector3> waypoints = new List<Vector3>();
         [HideInInspector] public float _spawnTimer;
@@ -109,9 +111,31 @@ public class NPCSpawnAndMove : MonoBehaviour
 
         if (!string.IsNullOrEmpty(cfg.tagOnSpawn)) go.tag = cfg.tagOnSpawn;
 
+        ApplyTypeMaterial(go, cfg);
+
         var agent = new Agent { go = go, tr = tr, type = type, cfg = cfg, wpIndex = 1 };
         _agents.Add(agent);
         cfg._activeCount++;
+    }
+
+    private static void ApplyTypeMaterial(GameObject go, TypeSettings cfg)
+    {
+        if (!go || cfg == null || cfg.materialForType == null) return;
+
+        // Update all child renderers (skip trail/line renderers).
+        var renderers = go.GetComponentsInChildren<Renderer>(true);
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            var r = renderers[i];
+            if (!r || r is TrailRenderer || r is LineRenderer) continue;
+
+            // Work with sharedMaterials to avoid per-instance material clones
+            var mats = r.sharedMaterials;
+            if (mats == null || mats.Length == 0) continue;
+            mats[0] = cfg.materialForType;
+
+            r.sharedMaterials = mats; // apply back
+        }
     }
 
     private void MoveAgent(Agent a, float dt)
@@ -134,8 +158,8 @@ public class NPCSpawnAndMove : MonoBehaviour
 
             if (a.wpIndex >= wps.Count)
             {
-                if (cfg.loopAtEnd) a.wpIndex = 0;
-                else { DespawnAgent(a); return; }
+                DespawnAgent(a);
+                return; 
             }
 
             target = wps[a.wpIndex];
