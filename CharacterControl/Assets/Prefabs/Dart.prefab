@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9218716507730484999}
   - component: {fileID: 424576956828059490}
   - component: {fileID: 2866584200526869245}
+  - component: {fileID: -5009247114228650795}
   m_Layer: 0
   m_Name: Dart
   m_TagString: Dart
@@ -246,3 +247,17 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-5009247114228650795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544315277809239319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7258cb3f02f62cc4b828426328866ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dartPool: {fileID: 0}
+  balloonPool: {fileID: 0}
