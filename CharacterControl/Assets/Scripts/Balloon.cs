@@ -1,4 +1,3 @@
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -9,46 +8,31 @@ public class Balloon : MonoBehaviour
     public GameObject popEffect;
     public AudioClip popSound;
 
-    private AudioSource audioSource;
-    private bool isPopped = false;
+    [Range(0f, 1f)]
+    public float volume = 1f;
 
+    // private AudioSource audioSource;
+    // private bool isPopped = false;
 
+    [Tooltip("Optional: world-space position to play the SFX from; defaults to the balloon position.")]
+    public Transform sfxOrigin;
 
-    void Start()
+    private void OnDisable()
     {
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource = null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
+        if (popSound == null) return;
+
+        Vector3 pos = sfxOrigin ? sfxOrigin.position : transform.position;
+        AudioSource.PlayClipAtPoint(popSound, pos, volume);
     }
 
-    [System.Obsolete]
-    public void PopBalloon()
-    {
-        if (isPopped)
-        {
-            return;
-        }
-
-        isPopped = true;
-        
-        if (popEffect != null)
-        {
-            Instantiate(popEffect, transform.position, Quaternion.identity);
-        }
-        AwardCurrency();
-
-        Destroy(gameObject, 0.1f);
-    }
-
+    /*
     [System.Obsolete]
     void AwardCurrency()
     {
         GameManager gm = FindObjectOfType<GameManager>();
         if (gm != null)
         {
-            // Currency awarding is ignored for now.
+            gm.AddCurrency(currencyValue);
         }
-    }
+    } */
 }

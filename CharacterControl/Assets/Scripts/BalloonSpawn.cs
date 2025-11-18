@@ -14,7 +14,7 @@ public class NPCSpawnAndMove : MonoBehaviour
     {
         [Header("Path & Spawning")]
         public Transform pathParent;
-        public float spawnInterval = 2f;
+
         public int maxActive = 6;
         public string tagOnSpawn = "";
 
@@ -86,7 +86,7 @@ public class NPCSpawnAndMove : MonoBehaviour
             return;
 
         cfg._spawnTimer += Time.deltaTime;
-        if (cfg._spawnTimer < cfg.spawnInterval) return;
+        if (cfg._spawnTimer < Random.Range(1.75f, 6f)) return;
         cfg._spawnTimer = 0f;
 
         GameObject go = npcPool.GetObject();
